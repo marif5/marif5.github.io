@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Muhammad Adeel Arif</title>
+<meta name="description" content="Muhammad Adeel Arif — reinforcement learning for power systems. Grid-forming control and autonomous restoration.">
+
+<!-- ============================================================
+     HOW TO PUBLISH (GitHub Pages, free)
+     1. Create a repo named   <your-username>.github.io
+     2. Add this file, named   index.html
+     3. Commit. Live at   https://<your-username>.github.io/
+     Anything marked  REPLACE  is a placeholder for you to edit.
+     The venture section in particular has [bracketed] slots for
+     your company name, one-line product, and stage.
+     ============================================================ -->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --void:    #0a1420;
+    --void2:   #0d1c2c;
+    --steel:   #42596f;
+    --live:    #5fd0bd;
+    --warn:    #f2a24a;
+    --warn2:   #e8663d;
+    --hero-ink:#eef3f8;
+    --hero-mut:#8ea3b9;
+    --hero-body:#c7d4e2;
+
+    --paper:   #f6f8fb;
+    --card:    #ffffff;
+    --ink:     #14181f;
+    --muted:   #59626f;
+    --line:    #e3e7ed;
+    --busbar:  #0e3a5f;
+    --copper:  #a85f2c;
+    --focus:   #1f6feb;
+    --maxw:    780px;
+  }
+
+  *{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  @media (prefers-reduced-motion: reduce){ html{ scroll-behavior:auto; } }
+
+  body{ margin:0; background:var(--paper); color:var(--ink);
+    font-family:"IBM Plex Serif", Georgia, serif; font-size:17px; line-height:1.65; -webkit-font-smoothing:antialiased; }
+
+  a{ color:var(--busbar); text-decoration:none; border-bottom:1px solid rgba(14,58,95,.25); transition:color .15s, border-color .15s; }
+  a:hover{ color:var(--copper); border-bottom-color:var(--copper); }
+  a:focus-visible{ outline:2px solid var(--focus); outline-offset:3px; border-radius:2px; }
+
+  .wrap{ max-width:var(--maxw); margin:0 auto; padding:0 24px; }
+
+  /* ---------- nav ---------- */
+  nav{ position:sticky; top:0; z-index:20; background:rgba(10,20,32,.92); backdrop-filter:saturate(160%) blur(8px); border-bottom:1px solid rgba(255,255,255,.06); }
+  .nav-inner{ max-width:var(--maxw); margin:0 auto; padding:12px 24px; display:flex; flex-wrap:wrap; align-items:baseline; gap:6px 18px; }
+  .nav-brand{ font-family:"IBM Plex Sans",sans-serif; font-weight:700; font-size:14px; color:var(--hero-ink); border:none; margin-right:auto; letter-spacing:.01em; }
+  .nav-inner a{ font-family:"IBM Plex Mono",monospace; font-size:12px; letter-spacing:.03em; color:var(--hero-mut); border:none; text-transform:lowercase; }
+  .nav-inner a:hover{ color:var(--live); }
+
+  /* ---------- hero ---------- */
+  .hero{ background:radial-gradient(120% 140% at 20% 0%, var(--void2), var(--void) 70%); color:var(--hero-ink); border-bottom:1px solid rgba(255,255,255,.06); }
+  .hero-inner{ max-width:var(--maxw); margin:0 auto; padding:52px 24px 30px; }
+  .eyebrow{ font-family:"IBM Plex Mono",monospace; font-size:12px; letter-spacing:.2em; color:var(--live); margin:0 0 14px; text-transform:uppercase; }
+  .hero h1{ font-family:"IBM Plex Sans",sans-serif; font-weight:700; font-size:38px; line-height:1.08; letter-spacing:-.015em; margin:0 0 8px; }
+  .hero .role{ font-family:"IBM Plex Sans",sans-serif; font-weight:400; font-size:16px; color:var(--hero-mut); margin:0; line-height:1.5; }
+
+  .diagram{ margin:30px 0 10px; }
+  .diagram svg{ width:100%; height:auto; display:block; }
+  .status{ font-family:"IBM Plex Mono",monospace; font-size:12.5px; letter-spacing:.06em; margin:6px 2px 0; transition:color .3s; }
+  .status.ok{ color:var(--live); }
+  .status.warn{ color:var(--warn); }
+
+  .seg{ stroke:var(--steel); stroke-width:3; stroke-linecap:round; fill:none; transition:stroke .3s; }
+  .node{ fill:#16283a; stroke:var(--steel); stroke-width:1.5; }
+  .lbl{ font-family:"IBM Plex Mono",monospace; font-size:10px; letter-spacing:.08em; fill:var(--hero-mut); }
+  .src{ fill:#10202f; stroke:var(--steel); stroke-width:2; transition:stroke .3s; }
+  .dev{ fill:#16283a; stroke:var(--steel); stroke-width:2; transition:fill .3s, stroke .3s; }
+  .gap{ fill:var(--void); opacity:0; transition:opacity .2s; }
+
+  @keyframes flow{ to{ stroke-dashoffset:-11; } }
+  @keyframes flow-rev{ to{ stroke-dashoffset:11; } }
+
+  svg[data-phase="nominal"] #seg-s-n1, svg[data-phase="nominal"] #seg-n1-n2, svg[data-phase="nominal"] #seg-n2-n3, svg[data-phase="nominal"] #seg-n3-n4,
+  svg[data-phase="fault"]   #seg-s-n1, svg[data-phase="fault"]   #seg-n1-n2, svg[data-phase="fault"]   #seg-n2-n3, svg[data-phase="fault"]   #seg-n3-n4,
+  svg[data-phase="isolated"] #seg-s-n1, svg[data-phase="isolated"] #seg-n1-n2,
+  svg[data-phase="restored"] #seg-s-n1, svg[data-phase="restored"] #seg-n1-n2{
+    stroke:var(--live); stroke-dasharray:0.1 11; animation:flow 1.4s linear infinite;
+  }
+  svg[data-phase="restored"] #seg-n3-n4, svg[data-phase="restored"] #seg-n4-a{
+    stroke:var(--live); stroke-dasharray:0.1 11; animation:flow-rev 1.4s linear infinite;
+  }
+
+  svg[data-phase="isolated"] #gapA, svg[data-phase="isolated"] #gapB,
+  svg[data-phase="restored"] #gapA, svg[data-phase="restored"] #gapB{ opacity:1; }
+  svg[data-phase="isolated"] .brk, svg[data-phase="restored"] .brk{ fill:var(--void); stroke:var(--warn); }
+  svg[data-phase="nominal"] #gapT, svg[data-phase="fault"] #gapT, svg[data-phase="isolated"] #gapT{ opacity:1; }
+  svg[data-phase="restored"] #tie{ fill:#0f2e2a; stroke:var(--live); }
+  svg[data-phase="restored"] #srcA{ stroke:var(--live); }
+  svg #srcS{ stroke:var(--live); }
+
+  #fault{ opacity:0; transition:opacity .25s; }
+  svg[data-phase="fault"] #fault, svg[data-phase="isolated"] #fault, svg[data-phase="restored"] #fault{ opacity:1; }
+  .fault-x{ stroke:var(--warn2); stroke-width:2.4; stroke-linecap:round; }
+  @keyframes ping{ 0%{ transform:scale(.5); opacity:.8; } 100%{ transform:scale(2.4); opacity:0; } }
+  .halo{ fill:none; stroke:var(--warn2); stroke-width:1.5; transform-origin:430px 120px; opacity:0; }
+  svg[data-phase="fault"] .halo{ animation:ping 0.9s ease-out infinite; }
+
+  @media (prefers-reduced-motion: reduce){
+    .seg,.halo{ animation:none !important; }
+    svg[data-phase] .seg{ stroke-dasharray:none; }
+  }
+
+  /* ---------- intro ---------- */
+  .intro{ padding:44px 0 8px; }
+  .intro-grid{ display:flex; gap:28px; align-items:flex-start; }
+  .portrait{ flex:0 0 118px; width:118px; height:118px; border-radius:4px; border:1px solid var(--line); overflow:hidden;
+    background:repeating-linear-gradient(45deg,#eef1f5 0 10px,#e6eaf0 10px 20px);
+    display:flex; align-items:center; justify-content:center; color:var(--muted); font-family:"IBM Plex Mono",monospace; font-size:10px; }
+  .portrait img{ width:100%; height:100%; object-fit:cover; display:block; }
+  .greeting{ font-family:"IBM Plex Sans",sans-serif; font-weight:600; font-size:12px; letter-spacing:.08em; text-transform:uppercase; color:var(--copper); margin:2px 0 10px; }
+  .intro p{ margin:0; }
+
+  /* ---------- venture panel (the pitch centerpiece) ---------- */
+  .venture{ background:radial-gradient(130% 160% at 85% 0%, var(--void2), var(--void) 72%); color:var(--hero-body);
+    border-radius:8px; padding:34px 32px; margin:48px 0; }
+  .venture .eyebrow{ margin-bottom:16px; }
+  .venture .thesis{ font-family:"IBM Plex Sans",sans-serif; font-weight:500; font-size:22px; line-height:1.35; color:var(--hero-ink); margin:0 0 24px; letter-spacing:-.005em; }
+  .pa{ display:flex; gap:16px; padding:12px 0; border-top:1px solid rgba(255,255,255,.08); }
+  .pa:first-of-type{ border-top:none; }
+  .pa .k{ flex:0 0 78px; font-family:"IBM Plex Mono",monospace; font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:var(--live); padding-top:4px; }
+  .pa .v{ font-size:16px; line-height:1.6; }
+  .venture .cta{ margin:22px 0 0; padding-top:20px; border-top:1px solid rgba(255,255,255,.08); font-size:15.5px; }
+  .venture .cta a{ color:var(--live); border-bottom-color:rgba(95,208,189,.4); }
+  .venture .cta a:hover{ color:#fff; border-bottom-color:#fff; }
+  .tag{ display:inline-block; font-family:"IBM Plex Mono",monospace; font-size:11px; letter-spacing:.08em; color:var(--warn); border:1px solid rgba(242,162,74,.4); border-radius:3px; padding:2px 8px; margin-left:8px; vertical-align:middle; }
+
+  /* ---------- dividers + sections ---------- */
+  .sld-div{ display:flex; align-items:center; margin:40px 0; }
+  .sld-div .rail{ flex:1; height:1px; background:var(--line); }
+  .sld-div .node{ width:8px; height:8px; border:1.5px solid var(--busbar); background:var(--paper); transform:rotate(45deg); margin:0 5px; }
+  .sld-div .node.on{ background:var(--copper); border-color:var(--copper); }
+
+  section{ padding:6px 0; }
+  h2{ font-family:"IBM Plex Sans",sans-serif; font-weight:600; font-size:13px; letter-spacing:.07em; text-transform:uppercase; color:var(--busbar); margin:0 0 16px; display:flex; align-items:center; gap:10px; }
+  h2::before{ content:""; width:16px; height:2px; background:var(--copper); }
+
+  ul.themes{ margin:0; padding:0; list-style:none; }
+  ul.themes li{ position:relative; padding-left:22px; margin:0 0 11px; }
+  ul.themes li::before{ content:""; position:absolute; left:2px; top:.62em; width:6px; height:6px; background:var(--busbar); transform:rotate(45deg); }
+  ul.themes b{ font-family:"IBM Plex Sans",sans-serif; font-weight:600; }
+
+  .log{ margin:0; }
+  .log .row{ display:flex; gap:16px; padding:9px 0; border-bottom:1px dashed var(--line); }
+  .log .row:last-child{ border-bottom:none; }
+  .log .date{ flex:0 0 62px; font-family:"IBM Plex Mono",monospace; font-size:12.5px; color:var(--copper); padding-top:2px; }
+  .log .item{ font-size:16px; }
+
+  .callout{ background:var(--card); border:1px solid var(--line); border-left:3px solid var(--copper); border-radius:4px; padding:18px 20px; }
+  .callout p{ margin:0 0 10px; }
+  .callout p:last-child{ margin-bottom:0; }
+  .mono{ font-family:"IBM Plex Mono",monospace; font-size:14px; }
+
+  .edu{ list-style:none; margin:0; padding:0; }
+  .edu li{ padding:12px 0; border-bottom:1px solid var(--line); }
+  .edu li:last-child{ border-bottom:none; }
+  .edu .deg{ font-family:"IBM Plex Sans",sans-serif; font-weight:600; }
+  .edu .school{ color:var(--muted); font-size:15px; }
+
+  footer{ padding:38px 0 60px; color:var(--muted); font-size:12.5px; font-family:"IBM Plex Mono",monospace; }
+  footer .rule{ height:1px; background:var(--line); margin-bottom:18px; }
+
+  @media (max-width:560px){
+    body{ font-size:16px; }
+    .hero h1{ font-size:29px; }
+    .nav-brand{ width:100%; margin-bottom:2px; }
+    .intro-grid{ flex-direction:column-reverse; gap:20px; }
+    .portrait{ width:104px; height:104px; flex-basis:104px; }
+    .venture{ padding:26px 22px; }
+    .venture .thesis{ font-size:19px; }
+    .pa{ flex-direction:column; gap:4px; }
+    .pa .k{ flex-basis:auto; padding-top:0; }
+  }
+</style>
+</head>
+
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a class="nav-brand" href="#top">Muhammad Adeel Arif</a>
+    <!-- REPLACE the # links with your real URLs -->
+    <a href="#venture">venture</a>
+    <a href="#" target="_blank" rel="noopener">cv</a>
+    <a href="#" target="_blank" rel="noopener">scholar</a>
+    <a href="#" target="_blank" rel="noopener">github</a>
+    <a href="#" target="_blank" rel="noopener">linkedin</a>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="hero-inner">
+    <p class="eyebrow">Grid-Forming Control &middot; Autonomous Restoration</p>
+    <h1>Muhammad Adeel Arif</h1>
+    <p class="role">
+      Reinforcement learning for power systems.<br>
+      Lead FLISR Engineer at Dominion Energy Virginia.
+    </p>
+
+    <div class="diagram">
+      <svg id="sld" viewBox="0 0 820 200" data-phase="nominal" role="img"
+           aria-label="Animated single-line diagram of a distribution feeder demonstrating fault location, isolation, and autonomous service restoration.">
+        <line id="seg-s-n1"  class="seg" x1="86"  y1="120" x2="205" y2="120"/>
+        <line id="seg-n1-n2" class="seg" x1="205" y1="120" x2="340" y2="120"/>
+        <line id="seg-n2-n3" class="seg" x1="340" y1="120" x2="520" y2="120"/>
+        <line id="seg-n3-n4" class="seg" x1="520" y1="120" x2="650" y2="120"/>
+        <line id="seg-n4-a"  class="seg" x1="650" y1="120" x2="734" y2="120"/>
+
+        <rect id="gapA" class="gap" x="374" y="112" width="12" height="16"/>
+        <rect id="gapB" class="gap" x="474" y="112" width="12" height="16"/>
+        <rect id="gapT" class="gap" x="686" y="112" width="12" height="16"/>
+
+        <g>
+          <rect id="srcS" class="src" x="54" y="104" width="32" height="32" rx="3"/>
+          <text class="lbl" x="70" y="156" text-anchor="middle">SUB</text>
+        </g>
+        <g>
+          <rect id="srcA" class="src" x="734" y="104" width="32" height="32" rx="3"/>
+          <text class="lbl" x="750" y="156" text-anchor="middle">GFM SRC</text>
+        </g>
+
+        <circle class="node" cx="205" cy="120" r="5"/>
+        <circle class="node" cx="340" cy="120" r="5"/>
+        <circle class="node" cx="520" cy="120" r="5"/>
+        <circle class="node" cx="650" cy="120" r="5"/>
+
+        <rect id="brkA" class="dev brk" x="374" y="112" width="12" height="16" rx="1.5"/>
+        <rect id="brkB" class="dev brk" x="474" y="112" width="12" height="16" rx="1.5"/>
+        <rect id="tie"  class="dev"     x="686" y="112" width="12" height="16" rx="1.5"/>
+        <text class="lbl" x="692" y="156" text-anchor="middle">N.O.</text>
+
+        <g id="fault">
+          <circle class="halo" cx="430" cy="120" r="9"/>
+          <line class="fault-x" x1="424" y1="114" x2="436" y2="126"/>
+          <line class="fault-x" x1="436" y1="114" x2="424" y2="126"/>
+          <text class="lbl" x="430" y="98" text-anchor="middle" fill="#e8663d">FAULT</text>
+        </g>
+      </svg>
+    </div>
+
+    <p class="status ok" id="status" aria-hidden="true">&#9679;&nbsp;&nbsp;SYSTEM NOMINAL</p>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <div class="intro">
+    <div class="intro-grid">
+      <div>
+        <p class="greeting">Greetings from Richmond, Virginia</p>
+        <p>
+          I am a power systems researcher focused on reinforcement learning and AI for the
+          grid, with an emphasis on grid-forming control architectures and autonomous
+          restoration. By day I am the Lead FLISR Engineer at Dominion Energy Virginia,
+          where self-healing distribution is a daily engineering problem rather than a
+          theory. I am an IEEE Senior Member, active in the IEEE Richmond Section (R3) and
+          the Power System Relaying and Control (PSRC) committee. For my full background,
+          <a href="#" target="_blank" rel="noopener"><b>download my CV</b></a>.
+          <!-- REPLACE the CV link -->
+        </p>
+      </div>
+      <div class="portrait">
+        <!-- REPLACE with: <img src="headshot.jpg" alt="Muhammad Adeel Arif"> -->
+        headshot.jpg
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= VENTURE / PITCH =================
+       Fill the [bracketed] slots with your real details. Keep claims
+       to what you can defend; leave metrics out until you have them. -->
+  <div class="venture" id="venture">
+    <p class="eyebrow">What I&rsquo;m building<span class="tag">[STAGE]</span></p>
+    <p class="thesis">
+      The grid is shifting from spinning machines to inverters, and it needs control that
+      can hold itself up and restore itself without waiting for a human in a control room.
+    </p>
+
+    <div class="pa">
+      <div class="k">Problem</div>
+      <div class="v">As inverter-based resources displace conventional generation, the grid loses
+        the inertia and voltage support that kept it stable. Restoration after major disturbances
+        is still largely manual, sequential, and slow.</div>
+    </div>
+    <div class="pa">
+      <div class="k">Approach</div>
+      <div class="v">Grid-forming control architectures that establish voltage and frequency directly,
+        paired with reinforcement learning agents that coordinate distributed resources and restore
+        service autonomously, section by section.</div>
+    </div>
+    <div class="pa">
+      <div class="k">Why now</div>
+      <div class="v">Inverter penetration, extreme-weather outages, and the load growth from
+        electrification and data centers are converging faster than today&rsquo;s operator-in-the-loop
+        tools can keep up with.</div>
+    </div>
+
+    <p class="cta">
+      <b>[Company]</b> is a [one-line description of what you are building].
+      I am talking with design partners, collaborators, and potential co-founders.
+      If you are building, investing, or operating in this space, let&rsquo;s talk:
+      <a href="#" target="_blank" rel="noopener">reach out</a>.
+      <!-- REPLACE [Company], the description, and the link -->
+    </p>
+  </div>
+
+  <div class="sld-div" aria-hidden="true"><span class="rail"></span><span class="node"></span><span class="node on"></span><span class="node"></span><span class="rail"></span></div>
+
+  <section>
+    <h2>Research focus</h2>
+    <ul class="themes">
+      <li><b>Reinforcement and multi-agent learning</b> for power system control</li>
+      <li><b>Grid-forming inverter control architectures</b> for inverter-dominant grids</li>
+      <li><b>Autonomous service restoration</b> and self-healing networks</li>
+      <li><b>Fault location, isolation &amp; service restoration</b> across ADMS and SCADA platforms</li>
+      <li><b>Trustworthy, deployable ML</b> for safety-critical grid operations</li>
+    </ul>
+  </section>
+
+  <div class="sld-div" aria-hidden="true"><span class="rail"></span><span class="node"></span><span class="rail"></span></div>
+
+  <section>
+    <h2>News</h2>
+    <div class="log">
+      <!-- REPLACE with your own updates. Format: MM/DD/YY -->
+      <div class="row"><span class="date">xx/xx/xx</span><span class="item">Add a recent talk, paper, award, or venture milestone here.</span></div>
+      <div class="row"><span class="date">xx/xx/xx</span><span class="item">Advancing a multi-agent reinforcement learning approach to decentralized inverter coordination, targeting an IEEE submission.</span></div>
+      <div class="row"><span class="date">xx/xx/xx</span><span class="item">Mentoring graduate students on grid-forming control and data-center load integration.</span></div>
+    </div>
+  </section>
+
+  <div class="sld-div" aria-hidden="true"><span class="rail"></span><span class="node"></span><span class="rail"></span></div>
+
+  <section>
+    <h2>Work with me</h2>
+    <div class="callout">
+      <p>
+        I am looking to connect with people who care about the future of grid control:
+        potential co-founders and design partners for the venture, utilities and developers
+        interested in piloting grid-forming control and autonomous restoration, and researchers
+        working on the same problems.
+      </p>
+      <p>
+        I also mentor graduate students on inverter-based resource control and the grid
+        integration of data-center loads. Reach me at
+        <span class="mono">your.email [at] example.com</span>.
+        <!-- REPLACE the email -->
+      </p>
+    </div>
+  </section>
+
+  <div class="sld-div" aria-hidden="true"><span class="rail"></span><span class="node"></span><span class="rail"></span></div>
+
+  <section>
+    <h2>Education</h2>
+    <!-- REPLACE with your actual degrees, institutions, and years -->
+    <ul class="edu">
+      <li><span class="deg">Ph.D., Electrical Engineering</span><br><span class="school">Institution, years</span></li>
+      <li><span class="deg">M.S., Electrical Engineering</span><br><span class="school">Institution, years</span></li>
+      <li><span class="deg">B.S., Electrical Engineering</span><br><span class="school">Institution, years</span></li>
+    </ul>
+  </section>
+
+  <div class="sld-div" aria-hidden="true"><span class="rail"></span><span class="node"></span><span class="rail"></span></div>
+
+  <section>
+    <h2>Publications</h2>
+    <ul class="themes">
+      <li>Please see my <a href="#" target="_blank" rel="noopener">Google Scholar</a> for an up-to-date list.</li>
+      <li>Preprints are available on my <a href="#" target="_blank" rel="noopener">ArXiv</a> and <a href="#" target="_blank" rel="noopener">ResearchGate</a> pages.</li>
+    </ul>
+  </section>
+
+  <footer>
+    <div class="rule"></div>
+    Muhammad Adeel Arif &middot; Richmond, Virginia &middot; IEEE Senior Member
+  </footer>
+
+</div>
+
+<script>
+(function(){
+  var svg = document.getElementById('sld');
+  var cap = document.getElementById('status');
+  if(!svg || !cap) return;
+
+  var phases = [
+    { p:'nominal',  t:3200, cls:'ok',   txt:'\u25CF\u00A0\u00A0SYSTEM NOMINAL' },
+    { p:'fault',    t:1900, cls:'warn', txt:'\u25B2\u00A0\u00A0FAULT DETECTED \u00B7 ZONE 3' },
+    { p:'isolated', t:2300, cls:'warn', txt:'\u25A0\u00A0\u00A0FAULTED SECTION ISOLATED' },
+    { p:'restored', t:3600, cls:'ok',   txt:'\u25CF\u00A0\u00A0SERVICE RESTORED \u00B7 GRID-FORMING TIE' }
+  ];
+
+  function apply(idx){
+    var ph = phases[idx];
+    svg.setAttribute('data-phase', ph.p);
+    cap.textContent = ph.txt;
+    cap.className = 'status ' + ph.cls;
+  }
+
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(reduce){ apply(3); return; }
+
+  var i = 0;
+  apply(0);
+  (function tick(){
+    setTimeout(function(){
+      i = (i + 1) % phases.length;
+      apply(i);
+      tick();
+    }, phases[i].t);
+  })();
+})();
+</script>
+
+</body>
+</html>
