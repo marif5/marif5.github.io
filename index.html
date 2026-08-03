@@ -4,249 +4,150 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<!-- The browser-tab title. Edit the text between the tags. -->
+<!-- Browser-tab title. Edit the text between the tags. -->
 <title>Muhammad Adeel Arif</title>
 
-<!-- One-line summary used by Google and link previews. Edit the quoted text. -->
+<!-- One-line summary for Google and link previews. Edit the quoted text. -->
 <meta name="description" content="Muhammad Adeel Arif — reinforcement learning for power systems. Grid-forming control and autonomous restoration.">
 
 <!-- ============================================================
-     HOW TO EDIT THIS PAGE  (plain-language guide)
-     ============================================================
-     The page has two parts:
-       1. A DARK banner at the top (called the "hero"), with your
-          name, tagline, and the animated diagram.
-       2. A LIGHT area below it with your bio, venture pitch,
-          research, news, contact, education, and publications.
-
-     FIVE THINGS YOU WILL DO MOST OFTEN
-     ----------------------------------
-     A. Change wording:
-          Find the words on the page, and type over them.
-          They sit between a ">" and a "<". Example:
-              <h1>Muhammad Adeel Arif</h1>
-          Change only the middle part:  Muhammad Adeel Arif
-
-     B. Change a link (where a word points to):
-          Find  href="..."  and put your web address inside the
-          quotes. Example, before:
-              <a href="#">scholar</a>
-          after:
-              <a href="https://scholar.google.com/...">scholar</a>
-          A "#" just means "no link yet".
-
-     C. Swap the photo:
-          Upload your image to the repo (same place as this file),
-          then in the <img ...> tag set  src="yourfile.png"  to match
-          the exact filename, including .png or .jpg. Details are at
-          the photo, lower down.
-
-     D. Change a color:
-          All colors live in the ":root" block a bit further down,
-          inside <style>. Change a value there once and it updates
-          across the whole page. Each color has a comment saying
-          what it is.
-
-     E. Add a news line:
-          Copy one existing news "row" and paste it below itself,
-          then edit the date and text. Marked at the News section.
-
-     ONE RULE
-     --------
-     Do not edit the block that starts with  <svg id="sld" ...>.
-     That is the animated diagram. It is hand-built and easy to
-     break. If you want it changed, ask and it can be done for you.
-
-     PLACEHOLDERS TO FILL IN
-     -----------------------
-     Search the file for the word  EDIT  to jump between every spot
-     that still needs your real details (links, email, degrees,
-     company name). Things in [square brackets] are also placeholders.
-
-     TO PUBLISH
-     ----------
-     This file must be named  index.html  and sit at the top level
-     of your  <username>.github.io  repo. Commit, wait a minute,
-     then refresh your site.
+     HOW TO EDIT THIS PAGE  (quick guide)
+     ------------------------------------------------------------
+     - Change wording: find the words on the page and type over
+       the text that sits between a ">" and a "<".
+     - Change a link: find  href="..."  and put your web address
+       inside the quotes. A "#" means "no link yet".
+     - Swap the photo: upload your image to the repo, then set
+       src="..." on the <img> tag to match its filename.
+     - Change a color: all colors are in the ":root" block below,
+       each with a plain-language comment.
+     - Find every blank to fill: search the file for the word EDIT.
+       Things in [square brackets] are also placeholders.
+     - To publish: this file must be named index.html at the top
+       level of your <username>.github.io repo. Commit and refresh.
      ============================================================ -->
 
-<!-- Loads the fonts. Leave this alone. -->
+<!-- Fonts. Leave this alone. -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
 <style>
   /* =========================================================
-     COLORS. Change a value here and it updates everywhere.
-     Colors are hex codes (like #0a1420). You can get new ones
-     from a site like htmlcolorcodes.com and paste them in.
+     COLORS. Change a value and it updates across the page.
      ========================================================= */
   :root{
-    /* --- the DARK banner (hero + venture panel) --- */
-    --void:    #0a1420;   /* darkest background */
-    --void2:   #0d1c2c;   /* slightly lighter dark, used in gradients */
-    --steel:   #42596f;   /* dim gray-blue lines in the diagram */
-    --live:    #5fd0bd;   /* teal "energized" color + small accents */
-    --warn:    #f2a24a;   /* amber, used for the open switch / fault */
-    --warn2:   #e8663d;   /* deeper orange, used for the fault marker */
-    --hero-ink:#eef3f8;   /* near-white text on the dark banner */
-    --hero-mut:#8ea3b9;   /* muted text on the dark banner */
-    --hero-body:#c7d4e2;  /* body text inside the venture panel */
-
-    /* --- the LIGHT part of the page (everything below) --- */
-    --paper:   #f6f8fb;   /* page background */
-    --card:    #ffffff;   /* box backgrounds */
-    --ink:     #14181f;   /* main text color */
-    --muted:   #59626f;   /* secondary/gray text */
-    --line:    #e3e7ed;   /* thin divider lines */
-    --busbar:  #0e3a5f;   /* deep blue, links + headings */
-    --copper:  #a85f2c;   /* warm accent: hover color + small markers */
-    --focus:   #1f6feb;   /* outline shown when tabbing with a keyboard */
-
-    --maxw:    780px;     /* how wide the content column is */
+    --paper:  #ffffff;   /* page background (white) */
+    --panel:  #f7f8fa;   /* very light gray for the venture box */
+    --ink:    #1b2a3d;   /* headings, dark navy */
+    --body:   #2c3745;   /* main body text */
+    --muted:  #616b78;   /* secondary / gray text */
+    --line:   #e6e8ec;   /* thin divider lines */
+    --link:   #1a5c8c;   /* link blue (professional, not bright) */
+    --accent: #b06a3b;   /* copper accent, used sparingly */
+    --maxw:   760px;     /* width of the content column */
   }
 
-  /* -------- General text and links. Safe to leave as is. -------- */
   *{ box-sizing:border-box; }
   html{ scroll-behavior:smooth; }
   @media (prefers-reduced-motion: reduce){ html{ scroll-behavior:auto; } }
 
-  body{ margin:0; background:var(--paper); color:var(--ink);
-    font-family:"IBM Plex Serif", Georgia, serif; font-size:17px; line-height:1.65; -webkit-font-smoothing:antialiased; }
+  body{
+    margin:0; background:var(--paper); color:var(--body);
+    font-family:"Inter", system-ui, -apple-system, sans-serif;
+    font-size:17px; line-height:1.65; -webkit-font-smoothing:antialiased;
+  }
 
-  a{ color:var(--busbar); text-decoration:none; border-bottom:1px solid rgba(14,58,95,.25); transition:color .15s, border-color .15s; }
-  a:hover{ color:var(--copper); border-bottom-color:var(--copper); }
-  a:focus-visible{ outline:2px solid var(--focus); outline-offset:3px; border-radius:2px; }
+  a{ color:var(--link); text-decoration:none; border-bottom:1px solid rgba(26,92,140,.28); transition:color .15s, border-color .15s; }
+  a:hover{ color:var(--accent); border-bottom-color:var(--accent); }
+  a:focus-visible{ outline:2px solid var(--link); outline-offset:3px; border-radius:2px; }
 
   .wrap{ max-width:var(--maxw); margin:0 auto; padding:0 24px; }
 
-  /* -------- Top menu bar -------- */
-  nav{ position:sticky; top:0; z-index:20; background:rgba(10,20,32,.92); backdrop-filter:saturate(160%) blur(8px); border-bottom:1px solid rgba(255,255,255,.06); }
-  .nav-inner{ max-width:var(--maxw); margin:0 auto; padding:12px 24px; display:flex; flex-wrap:wrap; align-items:baseline; gap:6px 18px; }
-  .nav-brand{ font-family:"IBM Plex Sans",sans-serif; font-weight:700; font-size:14px; color:var(--hero-ink); border:none; margin-right:auto; letter-spacing:.01em; }
-  .nav-inner a{ font-family:"IBM Plex Mono",monospace; font-size:12px; letter-spacing:.03em; color:var(--hero-mut); border:none; text-transform:lowercase; }
-  .nav-inner a:hover{ color:var(--live); }
+  /* -------- Top navigation -------- */
+  nav{ border-bottom:1px solid var(--line); background:var(--paper); }
+  .nav-inner{ max-width:var(--maxw); margin:0 auto; padding:16px 24px; display:flex; flex-wrap:wrap; align-items:baseline; gap:6px 20px; }
+  .nav-brand{ font-family:"Newsreader", Georgia, serif; font-weight:600; font-size:18px; color:var(--ink); border:none; margin-right:auto; }
+  .nav-inner a.link{ font-size:14px; color:var(--muted); border:none; }
+  .nav-inner a.link:hover{ color:var(--accent); }
 
-  /* -------- Dark banner (hero) -------- */
-  .hero{ background:radial-gradient(120% 140% at 20% 0%, var(--void2), var(--void) 70%); color:var(--hero-ink); border-bottom:1px solid rgba(255,255,255,.06); }
-  .hero-inner{ max-width:var(--maxw); margin:0 auto; padding:52px 24px 30px; }
-  .eyebrow{ font-family:"IBM Plex Mono",monospace; font-size:12px; letter-spacing:.2em; color:var(--live); margin:0 0 14px; text-transform:uppercase; }
-  .hero h1{ font-family:"IBM Plex Sans",sans-serif; font-weight:700; font-size:38px; line-height:1.08; letter-spacing:-.015em; margin:0 0 8px; }   /* your NAME size is here */
-  .hero .role{ font-family:"IBM Plex Sans",sans-serif; font-weight:400; font-size:16px; color:var(--hero-mut); margin:0; line-height:1.5; }
+  /* -------- Header: name + role -------- */
+  header.masthead{ padding:52px 0 6px; }
+  .eyebrow{ font-size:12px; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--accent); margin:0 0 14px; }
+  header.masthead h1{ font-family:"Newsreader", Georgia, serif; font-weight:600; font-size:42px; line-height:1.1; color:var(--ink); margin:0 0 8px; letter-spacing:-.01em; }
+  header.masthead .role{ font-size:17px; color:var(--muted); margin:0; line-height:1.5; }
 
-  /* -------- The animated diagram (styling). Do not hand-edit. -------- */
-  .diagram{ margin:30px 0 10px; }
-  .diagram svg{ width:100%; height:auto; display:block; }
-  .status{ font-family:"IBM Plex Mono",monospace; font-size:12.5px; letter-spacing:.06em; margin:6px 2px 0; transition:color .3s; }
-  .status.ok{ color:var(--live); }
-  .status.warn{ color:var(--warn); }
-  .seg{ stroke:var(--steel); stroke-width:3; stroke-linecap:round; fill:none; transition:stroke .3s; }
-  .node{ fill:#16283a; stroke:var(--steel); stroke-width:1.5; }
-  .lbl{ font-family:"IBM Plex Mono",monospace; font-size:10px; letter-spacing:.08em; fill:var(--hero-mut); }
-  .src{ fill:#10202f; stroke:var(--steel); stroke-width:2; transition:stroke .3s; }
-  .dev{ fill:#16283a; stroke:var(--steel); stroke-width:2; transition:fill .3s, stroke .3s; }
-  .gap{ fill:var(--void); opacity:0; transition:opacity .2s; }
-  @keyframes flow{ to{ stroke-dashoffset:-11; } }
-  @keyframes flow-rev{ to{ stroke-dashoffset:11; } }
-  svg[data-phase="nominal"] #seg-s-n1, svg[data-phase="nominal"] #seg-n1-n2, svg[data-phase="nominal"] #seg-n2-n3, svg[data-phase="nominal"] #seg-n3-n4,
-  svg[data-phase="fault"]   #seg-s-n1, svg[data-phase="fault"]   #seg-n1-n2, svg[data-phase="fault"]   #seg-n2-n3, svg[data-phase="fault"]   #seg-n3-n4,
-  svg[data-phase="isolated"] #seg-s-n1, svg[data-phase="isolated"] #seg-n1-n2,
-  svg[data-phase="restored"] #seg-s-n1, svg[data-phase="restored"] #seg-n1-n2{
-    stroke:var(--live); stroke-dasharray:0.1 11; animation:flow 1.4s linear infinite;
-  }
-  svg[data-phase="restored"] #seg-n3-n4, svg[data-phase="restored"] #seg-n4-a{
-    stroke:var(--live); stroke-dasharray:0.1 11; animation:flow-rev 1.4s linear infinite;
-  }
-  svg[data-phase="isolated"] #gapA, svg[data-phase="isolated"] #gapB,
-  svg[data-phase="restored"] #gapA, svg[data-phase="restored"] #gapB{ opacity:1; }
-  svg[data-phase="isolated"] .brk, svg[data-phase="restored"] .brk{ fill:var(--void); stroke:var(--warn); }
-  svg[data-phase="nominal"] #gapT, svg[data-phase="fault"] #gapT, svg[data-phase="isolated"] #gapT{ opacity:1; }
-  svg[data-phase="restored"] #tie{ fill:#0f2e2a; stroke:var(--live); }
-  svg[data-phase="restored"] #srcA{ stroke:var(--live); }
-  svg #srcS{ stroke:var(--live); }
-  #fault{ opacity:0; transition:opacity .25s; }
-  svg[data-phase="fault"] #fault, svg[data-phase="isolated"] #fault, svg[data-phase="restored"] #fault{ opacity:1; }
-  .fault-x{ stroke:var(--warn2); stroke-width:2.4; stroke-linecap:round; }
-  @keyframes ping{ 0%{ transform:scale(.5); opacity:.8; } 100%{ transform:scale(2.4); opacity:0; } }
-  .halo{ fill:none; stroke:var(--warn2); stroke-width:1.5; transform-origin:430px 120px; opacity:0; }
-  svg[data-phase="fault"] .halo{ animation:ping 0.9s ease-out infinite; }
-  @media (prefers-reduced-motion: reduce){
-    .seg,.halo{ animation:none !important; }
-    svg[data-phase] .seg{ stroke-dasharray:none; }
-  }
-
-  /* -------- Intro: bio + photo side by side -------- */
-  .intro{ padding:44px 0 8px; }
-  /* "flex" puts the two blocks side by side. On a phone they stack (see the phone rule at the very bottom). */
-  .intro-grid{ display:flex; gap:28px; align-items:flex-start; }
-  /* The photo box. Change width AND height together to resize it. border-radius:50% would make it a circle. */
-  .portrait{ flex:0 0 118px; width:118px; height:118px; border-radius:4px; border:1px solid var(--line); overflow:hidden;
-    background:repeating-linear-gradient(45deg,#eef1f5 0 10px,#e6eaf0 10px 20px);
-    display:flex; align-items:center; justify-content:center; color:var(--muted); font-family:"IBM Plex Mono",monospace; font-size:10px; }
+  /* -------- Intro: bio (left) + photo (right) -------- */
+  .intro{ padding:34px 0 6px; }
+  .intro-grid{ display:flex; gap:34px; align-items:flex-start; }
+  .intro .bio{ flex:1; }
+  .intro .bio p{ margin:0; }
+  /* Photo box. Change width and height together to resize.
+     border-radius:50% would make it a circle. */
+  .portrait{ flex:0 0 150px; width:150px; height:186px; border-radius:5px; overflow:hidden; border:1px solid var(--line);
+    background:repeating-linear-gradient(45deg,#f0f2f5 0 10px,#e9ecf0 10px 20px);
+    display:flex; align-items:center; justify-content:center; color:var(--muted); font-size:11px; }
   .portrait img{ width:100%; height:100%; object-fit:cover; display:block; }
-  .greeting{ font-family:"IBM Plex Sans",sans-serif; font-weight:600; font-size:12px; letter-spacing:.08em; text-transform:uppercase; color:var(--copper); margin:2px 0 10px; }
-  .intro p{ margin:0; }
 
-  /* -------- Venture panel (the dark pitch box) -------- */
-  .venture{ background:radial-gradient(130% 160% at 85% 0%, var(--void2), var(--void) 72%); color:var(--hero-body);
-    border-radius:8px; padding:34px 32px; margin:48px 0; }
-  .venture .eyebrow{ margin-bottom:16px; }
-  .venture .thesis{ font-family:"IBM Plex Sans",sans-serif; font-weight:500; font-size:22px; line-height:1.35; color:var(--hero-ink); margin:0 0 24px; letter-spacing:-.005em; }
-  .pa{ display:flex; gap:16px; padding:12px 0; border-top:1px solid rgba(255,255,255,.08); }
-  .pa:first-of-type{ border-top:none; }
-  .pa .k{ flex:0 0 78px; font-family:"IBM Plex Mono",monospace; font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:var(--live); padding-top:4px; }
-  .pa .v{ font-size:16px; line-height:1.6; }
-  .venture .cta{ margin:22px 0 0; padding-top:20px; border-top:1px solid rgba(255,255,255,.08); font-size:15.5px; }
-  .venture .cta a{ color:var(--live); border-bottom-color:rgba(95,208,189,.4); }
-  .venture .cta a:hover{ color:#fff; border-bottom-color:#fff; }
-  .tag{ display:inline-block; font-family:"IBM Plex Mono",monospace; font-size:11px; letter-spacing:.08em; color:var(--warn); border:1px solid rgba(242,162,74,.4); border-radius:3px; padding:2px 8px; margin-left:8px; vertical-align:middle; }
-
-  /* -------- Little diagram-style dividers between sections -------- */
+  /* -------- Single-line-diagram divider (the one field signature) -------- */
   .sld-div{ display:flex; align-items:center; margin:40px 0; }
   .sld-div .rail{ flex:1; height:1px; background:var(--line); }
-  .sld-div .node{ width:8px; height:8px; border:1.5px solid var(--busbar); background:var(--paper); transform:rotate(45deg); margin:0 5px; }
-  .sld-div .node.on{ background:var(--copper); border-color:var(--copper); }
+  .sld-div .node{ width:8px; height:8px; border:1.5px solid var(--accent); background:var(--paper); transform:rotate(45deg); margin:0 6px; }
+  .sld-div .node.on{ background:var(--accent); }
 
-  /* -------- Section headings and lists -------- */
+  /* -------- Venture panel (white, understated) -------- */
+  .venture{ background:var(--panel); border:1px solid var(--line); border-radius:8px; padding:30px 30px; margin:44px 0; }
+  .venture .label{ display:flex; align-items:center; gap:10px; font-size:12px; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:var(--ink); margin:0 0 16px; }
+  .venture .label::before{ content:""; width:16px; height:2px; background:var(--accent); }
+  .venture .thesis{ font-family:"Newsreader", Georgia, serif; font-weight:500; font-size:23px; line-height:1.36; color:var(--ink); margin:0 0 22px; }
+  .pa{ display:flex; gap:18px; padding:13px 0; border-top:1px solid var(--line); }
+  .pa:first-of-type{ border-top:none; }
+  .pa .k{ flex:0 0 84px; font-size:11px; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:var(--accent); padding-top:4px; }
+  .pa .v{ font-size:16px; line-height:1.6; color:var(--body); }
+  .venture .cta{ margin:20px 0 0; padding-top:18px; border-top:1px solid var(--line); font-size:16px; color:var(--body); }
+  .tag{ display:inline-block; font-size:11px; font-weight:600; letter-spacing:.06em; color:var(--accent); border:1px solid rgba(176,106,59,.4); border-radius:3px; padding:2px 8px; margin-left:8px; }
+
+  /* -------- Section headings + lists -------- */
   section{ padding:6px 0; }
-  h2{ font-family:"IBM Plex Sans",sans-serif; font-weight:600; font-size:13px; letter-spacing:.07em; text-transform:uppercase; color:var(--busbar); margin:0 0 16px; display:flex; align-items:center; gap:10px; }
-  h2::before{ content:""; width:16px; height:2px; background:var(--copper); }
+  h2{ font-size:12px; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:var(--ink); margin:0 0 16px; display:flex; align-items:center; gap:10px; }
+  h2::before{ content:""; width:16px; height:2px; background:var(--accent); }
+
   ul.themes{ margin:0; padding:0; list-style:none; }
-  ul.themes li{ position:relative; padding-left:22px; margin:0 0 11px; }
-  ul.themes li::before{ content:""; position:absolute; left:2px; top:.62em; width:6px; height:6px; background:var(--busbar); transform:rotate(45deg); }
-  ul.themes b{ font-family:"IBM Plex Sans",sans-serif; font-weight:600; }
+  ul.themes li{ position:relative; padding-left:20px; margin:0 0 11px; }
+  ul.themes li::before{ content:""; position:absolute; left:2px; top:.62em; width:6px; height:6px; background:var(--ink); transform:rotate(45deg); }
+  ul.themes b{ font-weight:600; color:var(--ink); }
 
   /* -------- News list -------- */
-  .log{ margin:0; }
-  .log .row{ display:flex; gap:16px; padding:9px 0; border-bottom:1px dashed var(--line); }
+  .log .row{ display:flex; gap:16px; padding:10px 0; border-bottom:1px solid var(--line); }
   .log .row:last-child{ border-bottom:none; }
-  .log .date{ flex:0 0 62px; font-family:"IBM Plex Mono",monospace; font-size:12.5px; color:var(--copper); padding-top:2px; }
+  .log .date{ flex:0 0 66px; font-size:13px; color:var(--accent); font-weight:500; padding-top:2px; }
   .log .item{ font-size:16px; }
 
   /* -------- Contact box + education + footer -------- */
-  .callout{ background:var(--card); border:1px solid var(--line); border-left:3px solid var(--copper); border-radius:4px; padding:18px 20px; }
+  .callout{ border:1px solid var(--line); border-left:3px solid var(--accent); border-radius:4px; padding:18px 20px; }
   .callout p{ margin:0 0 10px; }
   .callout p:last-child{ margin-bottom:0; }
-  .mono{ font-family:"IBM Plex Mono",monospace; font-size:14px; }
+
   .edu{ list-style:none; margin:0; padding:0; }
   .edu li{ padding:12px 0; border-bottom:1px solid var(--line); }
   .edu li:last-child{ border-bottom:none; }
-  .edu .deg{ font-family:"IBM Plex Sans",sans-serif; font-weight:600; }
+  .edu .deg{ font-weight:600; color:var(--ink); }
   .edu .school{ color:var(--muted); font-size:15px; }
-  footer{ padding:38px 0 60px; color:var(--muted); font-size:12.5px; font-family:"IBM Plex Mono",monospace; }
+
+  footer{ padding:40px 0 60px; color:var(--muted); font-size:13px; }
   footer .rule{ height:1px; background:var(--line); margin-bottom:18px; }
 
-  /* -------- Phone screens: stack things and shrink text -------- */
+  /* -------- Phone screens -------- */
   @media (max-width:560px){
     body{ font-size:16px; }
-    .hero h1{ font-size:29px; }
+    header.masthead h1{ font-size:32px; }
     .nav-brand{ width:100%; margin-bottom:2px; }
-    /* On a phone the bio and photo stack. "column-reverse" shows the photo ON TOP.
-       Change it to "column" if you would rather show the bio first, photo below. */
-    .intro-grid{ flex-direction:column-reverse; gap:20px; }
-    .portrait{ width:104px; height:104px; flex-basis:104px; }
-    .venture{ padding:26px 22px; }
-    .venture .thesis{ font-size:19px; }
+    /* On a phone, bio and photo stack. "column-reverse" shows the
+       photo on top; change to "column" to show the bio first. */
+    .intro-grid{ flex-direction:column-reverse; gap:22px; }
+    .portrait{ width:132px; height:164px; flex-basis:auto; }
+    .venture{ padding:24px 20px; }
+    .venture .thesis{ font-size:20px; }
     .pa{ flex-direction:column; gap:4px; }
     .pa .k{ flex-basis:auto; padding-top:0; }
   }
@@ -255,99 +156,41 @@
 
 <body>
 
-<!-- ========================================================
-     TOP MENU (the small links along the very top of the page)
-     Change each link's address by editing href="...".
-     "venture" and "#top" jump within this page, leave those.
-     The others should point to your real profiles.
-     ======================================================== -->
+<!-- ============ TOP MENU ============
+     Edit each link address in href="...". "#top" and "#venture"
+     jump within this page, leave those. -->
 <nav>
   <div class="nav-inner">
     <a class="nav-brand" href="#top">Muhammad Adeel Arif</a>
-    <a href="#venture">venture</a>
-    <a href="#" target="_blank" rel="noopener">cv</a>        <!-- EDIT: link to your CV pdf -->
-    <a href="#" target="_blank" rel="noopener">scholar</a>   <!-- EDIT: your Google Scholar URL -->
-    <a href="#" target="_blank" rel="noopener">github</a>    <!-- EDIT: your GitHub URL -->
-    <a href="#" target="_blank" rel="noopener">linkedin</a>  <!-- EDIT: your LinkedIn URL -->
+    <a class="link" href="#venture">venture</a>
+    <a class="link" href="#" target="_blank" rel="noopener">cv</a>        <!-- EDIT: your CV pdf link -->
+    <a class="link" href="#" target="_blank" rel="noopener">scholar</a>   <!-- EDIT: Google Scholar -->
+    <a class="link" href="#" target="_blank" rel="noopener">github</a>    <!-- EDIT: GitHub -->
+    <a class="link" href="#" target="_blank" rel="noopener">linkedin</a>  <!-- EDIT: LinkedIn -->
   </div>
 </nav>
 
-<!-- ========================================================
-     HERO: the dark banner with your name and the diagram.
-     ======================================================== -->
-<header class="hero" id="top">
-  <div class="hero-inner">
+<div class="wrap" id="top">
 
-    <!-- Small teal line above your name. Edit the text. -->
-    <p class="eyebrow">Grid-Forming Control &middot; Autonomous Restoration</p>
-
-    <!-- Your NAME. Edit the text between the tags. -->
+  <!-- ============ HEADER: name + role ============ -->
+  <header class="masthead">
+    <p class="eyebrow">Power Systems &middot; Reinforcement Learning</p>
     <h1>Muhammad Adeel Arif</h1>
-
-    <!-- Your tagline / title. <br> just starts a new line. -->
     <p class="role">
       Reinforcement learning for power systems.<br>
-      Lead FLISR Engineer at Dominion Energy Virginia.
+      Lead FLISR Engineer at Dominion Energy Virginia. Richmond, Virginia.
     </p>
+  </header>
 
-    <!-- vvvvv  DO NOT EDIT THIS DIAGRAM BLOCK  vvvvv -->
-    <div class="diagram">
-      <svg id="sld" viewBox="0 0 820 200" data-phase="nominal" role="img"
-           aria-label="Animated single-line diagram of a distribution feeder demonstrating fault location, isolation, and autonomous service restoration.">
-        <line id="seg-s-n1"  class="seg" x1="86"  y1="120" x2="205" y2="120"/>
-        <line id="seg-n1-n2" class="seg" x1="205" y1="120" x2="340" y2="120"/>
-        <line id="seg-n2-n3" class="seg" x1="340" y1="120" x2="520" y2="120"/>
-        <line id="seg-n3-n4" class="seg" x1="520" y1="120" x2="650" y2="120"/>
-        <line id="seg-n4-a"  class="seg" x1="650" y1="120" x2="734" y2="120"/>
-        <rect id="gapA" class="gap" x="374" y="112" width="12" height="16"/>
-        <rect id="gapB" class="gap" x="474" y="112" width="12" height="16"/>
-        <rect id="gapT" class="gap" x="686" y="112" width="12" height="16"/>
-        <g>
-          <rect id="srcS" class="src" x="54" y="104" width="32" height="32" rx="3"/>
-          <text class="lbl" x="70" y="156" text-anchor="middle">SUB</text>
-        </g>
-        <g>
-          <rect id="srcA" class="src" x="734" y="104" width="32" height="32" rx="3"/>
-          <text class="lbl" x="750" y="156" text-anchor="middle">GFM SRC</text>
-        </g>
-        <circle class="node" cx="205" cy="120" r="5"/>
-        <circle class="node" cx="340" cy="120" r="5"/>
-        <circle class="node" cx="520" cy="120" r="5"/>
-        <circle class="node" cx="650" cy="120" r="5"/>
-        <rect id="brkA" class="dev brk" x="374" y="112" width="12" height="16" rx="1.5"/>
-        <rect id="brkB" class="dev brk" x="474" y="112" width="12" height="16" rx="1.5"/>
-        <rect id="tie"  class="dev"     x="686" y="112" width="12" height="16" rx="1.5"/>
-        <text class="lbl" x="692" y="156" text-anchor="middle">N.O.</text>
-        <g id="fault">
-          <circle class="halo" cx="430" cy="120" r="9"/>
-          <line class="fault-x" x1="424" y1="114" x2="436" y2="126"/>
-          <line class="fault-x" x1="436" y1="114" x2="424" y2="126"/>
-          <text class="lbl" x="430" y="98" text-anchor="middle" fill="#e8663d">FAULT</text>
-        </g>
-      </svg>
-    </div>
-    <p class="status ok" id="status" aria-hidden="true">&#9679;&nbsp;&nbsp;SYSTEM NOMINAL</p>
-    <!-- ^^^^^  END OF DIAGRAM BLOCK  ^^^^^ -->
-
-  </div>
-</header>
-
-<!-- Everything below sits in the centered light column. -->
-<div class="wrap">
-
-  <!-- ========================================================
-       INTRO: your bio and your photo, side by side.
-       LAYOUT: the FIRST block below is the BIO and shows on the LEFT.
-               the SECOND block is the PHOTO and shows on the RIGHT.
-       To put the photo on the LEFT instead, swap the order of the
-       two <div> blocks (move the photo block above the bio block).
-       ======================================================== -->
+  <!-- ============ INTRO: bio + photo ============
+       LAYOUT: the BIO block is first, so it sits on the LEFT.
+               the PHOTO block is second, so it sits on the RIGHT.
+       To swap sides, move the photo block above the bio block. -->
   <div class="intro">
     <div class="intro-grid">
 
-      <!-- BIO (left side). Edit the greeting and the paragraph text. -->
-      <div>
-        <p class="greeting">Greetings from Richmond, Virginia</p>
+      <!-- BIO (left). Edit the paragraph text. -->
+      <div class="bio">
         <p>
           I am a power systems researcher focused on reinforcement learning and AI for the
           grid, with an emphasis on grid-forming control architectures and autonomous
@@ -360,9 +203,7 @@
         </p>
       </div>
 
-      <!-- PHOTO (right side).
-           To change the image: upload your file to the repo, then set
-           src="..." to its exact filename (yours is headshot.png). -->
+      <!-- PHOTO (right). Upload your image, then set src to its filename. -->
       <div class="portrait">
         <img src="headshot.png" alt="Muhammad Adeel Arif">
       </div>
@@ -370,21 +211,15 @@
     </div>
   </div>
 
-  <!-- ========================================================
-       VENTURE / PITCH  (the dark box).
-       Fill the [bracketed] slots with your real details.
-       ======================================================== -->
+  <!-- ============ VENTURE / PITCH ============
+       Fill the [bracketed] slots with your real details. -->
   <div class="venture" id="venture">
-    <!-- [STAGE] is a label like "Pre-seed" or "Building". -->
-    <p class="eyebrow">What I&rsquo;m building<span class="tag">[STAGE]</span></p>
-
-    <!-- The big one-line idea. -->
+    <p class="label">What I&rsquo;m building<span class="tag">[STAGE]</span></p>
     <p class="thesis">
       The grid is shifting from spinning machines to inverters, and it needs control that
       can hold itself up and restore itself without waiting for a human in a control room.
     </p>
 
-    <!-- Three labeled lines: Problem, Approach, Why now. Edit the text in each ".v". -->
     <div class="pa">
       <div class="k">Problem</div>
       <div class="v">As inverter-based resources displace conventional generation, the grid loses
@@ -415,10 +250,7 @@
 
   <div class="sld-div" aria-hidden="true"><span class="rail"></span><span class="node"></span><span class="node on"></span><span class="node"></span><span class="rail"></span></div>
 
-  <!-- ========================================================
-       RESEARCH FOCUS. Each <li> is one bullet. The <b>...</b>
-       part is the bold lead-in. Edit, add, or remove lines.
-       ======================================================== -->
+  <!-- ============ RESEARCH FOCUS ============ -->
   <section>
     <h2>Research focus</h2>
     <ul class="themes">
@@ -432,11 +264,9 @@
 
   <div class="sld-div" aria-hidden="true"><span class="rail"></span><span class="node"></span><span class="rail"></span></div>
 
-  <!-- ========================================================
-       NEWS. To ADD an entry: copy one "row" line below, paste it
-       as a new line, then change the date and text.
-       Date format is MM/DD/YY.
-       ======================================================== -->
+  <!-- ============ NEWS ============
+       To add an entry: copy one "row" line, paste it below, then
+       edit the date (MM/DD/YY) and text. -->
   <section>
     <h2>News</h2>
     <div class="log">
@@ -448,11 +278,8 @@
 
   <div class="sld-div" aria-hidden="true"><span class="rail"></span><span class="node"></span><span class="rail"></span></div>
 
-  <!-- ========================================================
-       CONTACT. EDIT: put your real email where it says
-       your.email [at] example.com  (writing "[at]" instead of the
-       @ symbol helps reduce spam, but you can use @ if you prefer).
-       ======================================================== -->
+  <!-- ============ CONTACT ============
+       EDIT: put your real email in place of your.email [at] example.com -->
   <section>
     <h2>Work with me</h2>
     <div class="callout">
@@ -464,19 +291,15 @@
       </p>
       <p>
         I also mentor graduate students on inverter-based resource control and the grid
-        integration of data-center loads. Reach me at
-        <span class="mono">your.email [at] example.com</span>.
+        integration of data-center loads. Reach me at your.email [at] example.com.
       </p>
     </div>
   </section>
 
   <div class="sld-div" aria-hidden="true"><span class="rail"></span><span class="node"></span><span class="rail"></span></div>
 
-  <!-- ========================================================
-       EDUCATION. EDIT each line with your real degree, school,
-       and years. The bold part is the degree; the gray part below
-       it is the school and years.
-       ======================================================== -->
+  <!-- ============ EDUCATION ============
+       EDIT each line with your real degree, school, and years. -->
   <section>
     <h2>Education</h2>
     <ul class="edu">
@@ -488,10 +311,8 @@
 
   <div class="sld-div" aria-hidden="true"><span class="rail"></span><span class="node"></span><span class="rail"></span></div>
 
-  <!-- ========================================================
-       PUBLICATIONS. EDIT: put your real Scholar / ArXiv links in
-       the href="..." spots.
-       ======================================================== -->
+  <!-- ============ PUBLICATIONS ============
+       EDIT: put your real Scholar / ArXiv links in the href spots. -->
   <section>
     <h2>Publications</h2>
     <ul class="themes">
@@ -500,51 +321,12 @@
     </ul>
   </section>
 
-  <!-- Bottom line of the page. Edit the text if you like. -->
   <footer>
     <div class="rule"></div>
     Muhammad Adeel Arif &middot; Richmond, Virginia &middot; IEEE Senior Member
   </footer>
 
 </div>
-
-<!-- ========================================================
-     This script runs the animated diagram. Do not edit.
-     ======================================================== -->
-<script>
-(function(){
-  var svg = document.getElementById('sld');
-  var cap = document.getElementById('status');
-  if(!svg || !cap) return;
-
-  var phases = [
-    { p:'nominal',  t:3200, cls:'ok',   txt:'\u25CF\u00A0\u00A0SYSTEM NOMINAL' },
-    { p:'fault',    t:1900, cls:'warn', txt:'\u25B2\u00A0\u00A0FAULT DETECTED \u00B7 ZONE 3' },
-    { p:'isolated', t:2300, cls:'warn', txt:'\u25A0\u00A0\u00A0FAULTED SECTION ISOLATED' },
-    { p:'restored', t:3600, cls:'ok',   txt:'\u25CF\u00A0\u00A0SERVICE RESTORED \u00B7 GRID-FORMING TIE' }
-  ];
-
-  function apply(idx){
-    var ph = phases[idx];
-    svg.setAttribute('data-phase', ph.p);
-    cap.textContent = ph.txt;
-    cap.className = 'status ' + ph.cls;
-  }
-
-  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if(reduce){ apply(3); return; }
-
-  var i = 0;
-  apply(0);
-  (function tick(){
-    setTimeout(function(){
-      i = (i + 1) % phases.length;
-      apply(i);
-      tick();
-    }, phases[i].t);
-  })();
-})();
-</script>
 
 </body>
 </html>
